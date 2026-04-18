@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
                         buttonText = "Botón simple",
                         modifier = Modifier.padding(innerPadding)
                     )
-                    TasksList()
                 }
             }
         }
