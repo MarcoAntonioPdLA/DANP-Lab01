@@ -34,6 +34,9 @@ class MainActivity : ComponentActivity() {
             DANPLab01Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     FirstScreen(
+                        title = "Primera aplicación",
+                        subtitle = "Esta es una interfaz básica.",
+                        buttonText = "Botón simple",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -43,7 +46,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun FirstScreen(modifier: Modifier = Modifier) {
+fun FirstScreen(title: String, subtitle: String, buttonText: String, modifier: Modifier = Modifier) {
     var buttonMessage by remember { mutableStateOf("") }
     Column(
         modifier = Modifier.fillMaxSize().padding(24.dp),
@@ -51,12 +54,12 @@ fun FirstScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Texto de título",
+            text = title,
             style = MaterialTheme.typography.headlineLarge
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Texto de subtítulo",
+            text = subtitle,
             style = MaterialTheme.typography.headlineMedium
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -66,7 +69,7 @@ fun FirstScreen(modifier: Modifier = Modifier) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Presione aquí")
+            Text(text = buttonText)
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -81,6 +84,10 @@ fun FirstScreen(modifier: Modifier = Modifier) {
 @Composable
 fun FirstScreenPreview() {
     DANPLab01Theme {
-        FirstScreen()
+        FirstScreen(
+            title = "Primera aplicación",
+            subtitle = "Esta es una interfaz básica.",
+            buttonText = "Botón simple"
+        )
     }
 }
