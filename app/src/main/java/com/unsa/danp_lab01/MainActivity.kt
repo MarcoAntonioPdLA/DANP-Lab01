@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -33,12 +35,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             DANPLab01Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FirstScreen(
-                        title = "Primera aplicación",
-                        subtitle = "Esta es una interfaz básica.",
-                        buttonText = "Botón simple",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    TasksList()
                 }
             }
         }
@@ -80,7 +77,7 @@ fun FirstScreen(title: String, subtitle: String, buttonText: String, modifier: M
     }
 }
 
-@Preview(name = "Preview", showBackground = true)
+@Preview(name = "First Screen Preview", showBackground = true)
 @Composable
 fun FirstScreenPreview() {
     DANPLab01Theme {
@@ -89,5 +86,41 @@ fun FirstScreenPreview() {
             subtitle = "Esta es una interfaz básica.",
             buttonText = "Botón simple"
         )
+    }
+}
+
+data class Task(
+    val title: String,
+    val description: String
+)
+
+@Composable
+fun TasksList() {
+    val tasks = List(size = 10) { index ->
+        Task(
+            title = "Tarea ${index + 1}",
+            description = "Descripción de la tarea ${index + 1}"
+        )
+    }
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "Lista de tareas:",
+            style = MaterialTheme.typography.titleMedium
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        LazyColumn {
+        }
+    }
+}
+
+@Preview(name = "ListPreview", showBackground = true)
+@Composable
+fun ListPreview() {
+    DANPLab01Theme {
+        TasksList()
     }
 }
