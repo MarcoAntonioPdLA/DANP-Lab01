@@ -35,6 +35,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             DANPLab01Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    FirstScreen(
+                        title = "Primera aplicación",
+                        subtitle = "Esta es una interfaz básica.",
+                        buttonText = "Botón simple",
+                        modifier = Modifier.padding(innerPadding)
+                    )
                     TasksList()
                 }
             }
@@ -113,7 +119,27 @@ fun TasksList() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         LazyColumn {
+            items(tasks) { task ->
+                TaskItem(task = task)
+            }
         }
+    }
+}
+
+@Composable
+fun TaskItem(task: Task) {
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+    ) {
+        Text(
+            text = task.title,
+            style = MaterialTheme.typography.titleSmall
+        )
+        Text(
+            text = task.description,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
     }
 }
 
